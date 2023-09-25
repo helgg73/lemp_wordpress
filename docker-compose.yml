@@ -65,3 +65,7 @@ services:
       - "./configure-wp.sh:/opt/configure-wp.sh"
 #      - "./sample-content.xml:/var/www/html/sample-content.xml"
 #    command: "bash /opt/configure-wp.sh"
+
+networks:
+  wordpress-network:
+    driver: bridge 
