@@ -30,3 +30,4 @@ https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-d
 
 Пока не внедрено:
 https://serveradmin.ru/zashhita-wordpress-ot-xml-rpc-ataki/
+https://serveradmin.ru/nastroyka-fail2ban-dlya-zashhityi-wordpress/
