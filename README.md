@@ -23,3 +23,10 @@ configure-wp.sh.example
 Скрипты для импорта и экспорта баз:
 db-export.sh
 db-import.sh
+
+Использованы материалы:
+https://serveradmin.ru/ci-cd-proekta-na-wordpress/
+https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose-ru
+
+Пока не внедрено:
+https://serveradmin.ru/zashhita-wordpress-ot-xml-rpc-ataki/
