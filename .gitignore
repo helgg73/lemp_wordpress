@@ -1,3 +1,6 @@
+.env
+
+
 # example from github 
 
 # Wordpress - ignore core, configuration, examples, uploads and logs.
