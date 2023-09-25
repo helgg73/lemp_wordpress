@@ -45,7 +45,7 @@ services:
       - "8080:80"
     volumes:
       - "./project:/var/www/html"
-      - "./volumes/nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./volumes/nginx/nginx.conf:/etc/nginx/conf.d"
 #      TODO
 #      - certbot-etc:/etc/letsencrypt
     networks:

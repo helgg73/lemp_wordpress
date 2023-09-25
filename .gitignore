@@ -6,6 +6,11 @@ configure-wp.sh
 # IDE
 .vscode/
 
+# Data
+volumes/mysql/db/
+project/
+!project/.gitkeep
+
 
 # example from github 
 
