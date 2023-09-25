@@ -1,4 +1,9 @@
+# Environments
 .env
+.env.bak
+
+# IDE
+.vscode/
 
 
 # example from github 
