@@ -8,17 +8,15 @@ services:
     env_file: .env
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_USER: "${MYSQL_USER}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - "./volumes/mysql/db:/var/lib/mysql"
       - "./volumes/mysql/conf.d:/etc/mysql/conf.d"
       - "./volumes/mysql/restore_from:/docker-entrypoint-initdb.d"
 #    Актуально для MySQL
 #    command: '--default-authentication-plugin=mysql_native_password'
-    networks:
-      - wordpress-network
 
   wordpress:
     depends_on:
@@ -34,9 +32,7 @@ services:
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
     volumes:
       - "./project:/var/www/html"
- #     - "./configure-wp.sh:/opt/configure-wp.sh"
-    networks:
-      - wordpress-network
+      - "./configure-wp.sh:/opt/configure-wp.sh"
 
   webserver:
     depends_on:
@@ -51,8 +47,6 @@ services:
       - "./volumes/nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
 #      TODO
 #      - certbot-etc:/etc/letsencrypt
-    networks:
-      - wordpress-network
 
   wp-cli:
     depends_on:
@@ -68,9 +62,5 @@ services:
     volumes:
       - "./project:/var/www/html"
       - "./configure-wp.sh:/opt/configure-wp.sh"
-#      - "./sample-content.xml:/var/www/html/sample-content.xml"
-#    command: "bash /opt/configure-wp.sh"
-
-networks:
-  wordpress-network:
-    driver: bridge
+      - "./sample-content.xml:/var/www/html/sample-content.xml"
+    command: "bash /opt/configure-wp.sh"
