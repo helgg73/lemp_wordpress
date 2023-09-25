@@ -1,6 +1,7 @@
 # Environments
 .env
 .env.bak
+configure-wp.sh
 
 # IDE
 .vscode/
