@@ -11,7 +11,7 @@ nginx:latest
 .env.example
 
 Пример конфигурационного файла для WordPress:
-configure-wp.sh.example
+configure-wp.sh.example (у меня почему-то не срабатывает, не находит БД,хотя .env общее)
 
 Расположение:
 ./project - проект
