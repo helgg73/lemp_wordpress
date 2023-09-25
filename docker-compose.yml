@@ -1,0 +1,67 @@
+version: '3.3'
+
+services:
+  db:
+    image: mariadb:10.6
+    container_name: db
+    restart: always
+    env_file: .env
+    environment:
+      - MYSQL_DATABASE=wordpress
+    volumes:
+      - "./volumes/mysql/db:/var/lib/mysql"
+      - "./volumes/mysql/conf.d:/etc/mysql/conf.d"
+      - "./volumes/mysql/restore_from:/docker-entrypoint-initdb.d"
+#    Актуально для MySQL
+#    command: '--default-authentication-plugin=mysql_native_password'
+    networks:
+      - wordpress-network
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:6.3-fpm
+    container_name: wordpress
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=$MYSQL_USER
+      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      - WORDPRESS_DB_NAME=wordpress
+    volumes:
+      - "./project:/var/www/html"
+      - "./configure-wp.sh:/opt/configure-wp.sh"
+    networks:
+      - wordpress-network
+
+  webserver:
+    depends_on:
+      - wordpress
+    image: nginx:latest
+    container_name: webserver
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - "./project:/var/www/html"
+      - "./volumes/nginx/nginx.conf:/etc/nginx/nginx.conf"
+#      TODO
+#      - certbot-etc:/etc/letsencrypt
+    networks:
+      - wordpress-network
+
+  wp-cli:
+    image: wordpress:cli
+    user: "33:33"
+    env_file: .env
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=$MYSQL_USER
+      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      - WORDPRESS_DB_NAME=wordpress
+    volumes:
+      - "./project:/var/www/html"
+      - "./configure-wp.sh:/opt/configure-wp.sh"
+#      - "./sample-content.xml:/var/www/html/sample-content.xml"
+#    command: "bash /opt/configure-wp.sh"
