@@ -31,7 +31,7 @@ services:
       - WORDPRESS_DB_NAME=wordpress
     volumes:
       - "./project:/var/www/html"
-      - "./configure-wp.sh:/opt/configure-wp.sh"
+ #     - "./configure-wp.sh:/opt/configure-wp.sh"
     networks:
       - wordpress-network
 
@@ -62,7 +62,7 @@ services:
       - WORDPRESS_DB_NAME=wordpress
     volumes:
       - "./project:/var/www/html"
-      - "./configure-wp.sh:/opt/configure-wp.sh"
+#      - "./configure-wp.sh:/opt/configure-wp.sh"
 #      - "./sample-content.xml:/var/www/html/sample-content.xml"
 #    command: "bash /opt/configure-wp.sh"
 
