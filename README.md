@@ -19,3 +19,7 @@ configure-wp.sh.example
 
 На nginx перенаправляется порт 8080
 Необходимое для использования letsencrypt закомментировано
+
+Скрипты для импорта и экспорта баз:
+db-export.sh
+db-import.sh
